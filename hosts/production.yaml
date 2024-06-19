@@ -1,0 +1,7 @@
+# vim:ft=yaml.ansible
+---
+production:
+  hosts:
+    lima-default:
+      ansible_port: 60022
+      ansible_host: localhost

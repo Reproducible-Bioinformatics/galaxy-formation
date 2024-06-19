@@ -1,0 +1,11 @@
+# vim:ft=yaml.ansible
+---
+- name: Install dependencies.
+  hosts: all
+  roles:
+    - deps
+
+- name: Default production deployment.
+  hosts: all
+  roles:
+    - galaxy
