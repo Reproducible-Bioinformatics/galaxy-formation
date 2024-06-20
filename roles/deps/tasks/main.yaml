@@ -1,11 +1,10 @@
 # vim:ft=yaml.ansible
 ---
-- name: Ensure Python3 is at the lastest version.
+- name: Ensure required dependencies are present.
   ansible.builtin.apt:
-    name: python3
-    state: present
-
-- name: Ensure Git is at the latest version.
-  ansible.builtin.apt:
-    name: git
+    name:
+      - python3
+      - git
+      - python3-virtualenv
+      - python3-pip
     state: present

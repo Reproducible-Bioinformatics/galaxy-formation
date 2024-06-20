@@ -1,8 +1,0 @@
-# vim:ft=yaml.ansible
----
-- name: Ensure Galaxy is cloned.
-  ansible.builtin.git:
-    repo: https://github.com/galaxyproject/galaxy.git
-    single_branch: true
-    dest: /srv/galaxy
-    version: "{{ galaxy_version }}"
