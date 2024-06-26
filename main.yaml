@@ -1,10 +1,71 @@
 # vim:ft=yaml.ansible
 ---
-- name: Default production deployment.
+- name: Default prod deployment
   hosts: all
+  vars:
+    galaxy_config_style: yaml
+    galaxy_layout: root-dir
+    galaxy_root: /srv/galaxy
+    galaxy_commit_id: release_24.1
+    galaxy_separate_privileges: true
+    galaxy_force_checkout: true
+    galaxy_create_user: true
+    galaxy_manage_paths: true
+    galaxy_manage_systemd: true
+    galaxy_user: galaxy
+    galaxy_privsep_user: gxpriv
+    galaxy_group: galaxy
+    galaxy_config:
+      gravity:
+        process_manager: systemd
+        galaxy_root: "{{ galaxy_root }}/server"
+        galaxy_user: "{{ galaxy_user_name }}"
+        virtualenv: "{{ galaxy_venv_dir }}"
+        gunicorn:
+          # listening options
+          bind: "unix:{{ galaxy_mutable_config_dir }}/gunicorn.sock"
+          # performance options
+          workers: 2
+          # Other options that will be passed to gunicorn
+          # This permits setting of 'secure' headers like REMOTE_USER (and friends)
+          # https://docs.gunicorn.org/en/stable/settings.html#forwarded-allow-ips
+          extra_args: '--forwarded-allow-ips="*"'
+          # This lets Gunicorn start Galaxy completely before forking which is faster.
+          # https://docs.gunicorn.org/en/stable/settings.html#preload-app
+          preload: true
+        celery:
+          concurrency: 2
+          enable_beat: true
+          enable: true
+          queues: celery,galaxy.internal,galaxy.external
+          pool: threads
+          memory_limit: 2
+          loglevel: DEBUG
+        handlers:
+          handler:
+            processes: 2
+            pools:
+              - job-handlers
+              - workflow-schedulers
   pre_tasks:
-    - name: Install dependencies.
-      ansible.builtin.include_role:
-        name: deps
+    - name: Install Dependencies
+      ansible.builtin.apt:
+        name:
+          - sudo
+          - git
+          - make
+          - python3-venv
+          - virtualenv
+          - python3-fissix
+          - python3-setuptools
+          - python3-pkg-resources
+          - python3-dev
+          - python3-psycopg2
+          - gcc
+          - acl
+          - gnutls-bin
+          - libmagic-dev
+          - nodeenv
+      become: true
   roles:
-    - galaxyproject.galaxy
+    - role: galaxyproject.galaxy
