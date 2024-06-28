@@ -23,16 +23,16 @@
         virtualenv: "{{ galaxy_venv_dir }}"
         gunicorn:
           # listening options
-          bind: "unix:{{ galaxy_mutable_config_dir }}/gunicorn.sock"
+          # bind: "unix:{{ galaxy_mutable_config_dir }}/gunicorn.sock"
           # performance options
           workers: 2
           # Other options that will be passed to gunicorn
           # This permits setting of 'secure' headers like REMOTE_USER (and friends)
           # https://docs.gunicorn.org/en/stable/settings.html#forwarded-allow-ips
-          extra_args: '--forwarded-allow-ips="*"'
+          # extra_args: '--forwarded-allow-ips="*"'
           # This lets Gunicorn start Galaxy completely before forking which is faster.
           # https://docs.gunicorn.org/en/stable/settings.html#preload-app
-          preload: true
+          # preload: true
         celery:
           concurrency: 2
           enable_beat: true
@@ -57,6 +57,7 @@
           - python3-venv
           - virtualenv
           - python3-fissix
+          - python3-lib2to3
           - python3-setuptools
           - python3-pkg-resources
           - python3-dev
