@@ -12,6 +12,7 @@
     galaxy_create_user: true
     galaxy_manage_paths: true
     galaxy_manage_systemd: true
+    galaxy_manage_subdomain_static: true
     galaxy_user: galaxy
     galaxy_privsep_user: gxpriv
     galaxy_group: galaxy
@@ -23,7 +24,7 @@
         virtualenv: "{{ galaxy_venv_dir }}"
         gunicorn:
           # listening options
-          # bind: "unix:{{ galaxy_mutable_config_dir }}/gunicorn.sock"
+          bind: "unix:{{ galaxy_mutable_config_dir }}/gunicorn.sock"
           # performance options
           workers: 2
           # Other options that will be passed to gunicorn

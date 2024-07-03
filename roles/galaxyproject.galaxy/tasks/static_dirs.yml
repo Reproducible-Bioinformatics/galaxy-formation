@@ -1,4 +1,24 @@
 ---
+- name: Ensure __galaxy_privsep_user_name is defined
+  ansible.builtin.assert:
+    that: __galaxy_privsep_user_name is defined
+    fail_msg: "__galaxy_privsep_user_name is not defined"
+
+- name: Ensure __galaxy_privsep_user_group is defined
+  ansible.builtin.assert:
+    that: __galaxy_privsep_user_group is defined
+    fail_msg: "__galaxy_privsep_user_group is not defined"
+
+- name: Ensure galaxy_themes_static_path is defined
+  ansible.builtin.assert:
+    that: galaxy_themes_static_path is defined
+    fail_msg: "galaxy_themes_static_path is not defined"
+
+- name: Check if static directory exists and is writable
+  ansible.builtin.stat:
+    path: "{{ galaxy_themes_static_path }}/static"
+  become: yes
+
 - name: Create welcome.html directory for basedomain
   ansible.builtin.file:
     state: directory
@@ -6,6 +26,7 @@
     owner: "{{ __galaxy_privsep_user_name }}"
     group: "{{ __galaxy_privsep_user_group }}"
     path: "{{ galaxy_themes_static_path }}/static/welcome.html"
+  become: yes
 
 - name: Template welcome.html for basedomain
   ansible.builtin.template:
@@ -14,10 +35,10 @@
     owner: "{{ __galaxy_privsep_user_name }}"
     group: "{{ __galaxy_privsep_user_group }}"
     mode: '0644'
+  become: yes
 
 - name: Include create subdomain static dirs and copy static files
   ansible.builtin.include_tasks: static_subdomain_dirs.yml
-  loop: "{{ galaxy_themes_subdomains if galaxy_themes_subdomains | length or \
-    galaxy_manage_static else [] }}"
+  loop: "{{ galaxy_themes_subdomains if galaxy_themes_subdomains else [] }}"
   loop_control:
     loop_var: subdomain

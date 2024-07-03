@@ -398,7 +398,7 @@ galaxy_gravity_config_default:
 # Default uWSGI configuration
 galaxy_uwsgi_yaml_parser: internal
 galaxy_uwsgi_config_default:
-  http: 0.0.0.0:8080
+  http: localhost:8080
   buffer-size: 16384
   processes: 1
   threads: 4
