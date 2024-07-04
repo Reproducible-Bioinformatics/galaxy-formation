@@ -2,3 +2,5 @@
 ---
 - src: galaxyproject.galaxy
   version: 0.10.21
+- src: geerlingguy.docker
+  version: 7.3.0
