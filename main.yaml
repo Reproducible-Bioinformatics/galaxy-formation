@@ -72,6 +72,8 @@
           - nodeenv
       become: true
   roles:
+    - role: geerlingguy.docker
+      become: true
     - role: galaxyproject.galaxy
       tags: configure_galaxy
     - role: caddy
