@@ -3,6 +3,8 @@
 - name: Default prod deployment
   hosts: all
   vars:
+    caddy_port: 80
+    galaxy_bind_address: http://localhost:8080
     galaxy_config_style: yaml
     galaxy_layout: root-dir
     galaxy_root: /srv/galaxy
@@ -71,3 +73,7 @@
       become: true
   roles:
     - role: galaxyproject.galaxy
+      tags: configure_galaxy
+    - role: caddy
+      tags: configure_reverse_proxy
+      become: true
