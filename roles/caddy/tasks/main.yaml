@@ -1,0 +1,15 @@
+# vim: ft=yaml.ansible
+---
+- name: Install Caddy
+  when: ansible_os_family == "Debian"
+  ansible.builtin.apt:
+    name: caddy
+    state: present
+
+- name: Configure Caddy
+  ansible.builtin.template:
+    src: "Caddyfile.j2"
+    dest: "/etc/caddy/Caddyfile"
+    mode: '0644'
+  notify:
+    - Restart Caddy
