@@ -74,6 +74,7 @@
   roles:
     - role: geerlingguy.docker
       become: true
+      tags: configure_docker
     - role: galaxyproject.galaxy
       tags: configure_galaxy
     - role: caddy
