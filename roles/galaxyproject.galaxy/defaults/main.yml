@@ -262,6 +262,7 @@ galaxy_config_perms_public: 0644
 # galaxy_server_dir
 galaxy_paste_app_factory: "galaxy.web.buildapp:app_factory"
 galaxy_app_config_default:
+  admin_users: "{{ galaxy_admin_users }}"
   # Defaults for sample configs that require a value to be set
   builds_file_path: "{{ galaxy_server_dir }}/tool-data/shared/ucsc/builds.txt.sample"
   data_manager_config_file: "{{ galaxy_server_dir }}/config/data_manager_conf.xml.sample"
