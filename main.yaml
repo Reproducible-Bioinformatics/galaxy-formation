@@ -18,6 +18,7 @@
     galaxy_user: galaxy
     galaxy_privsep_user: gxpriv
     galaxy_group: galaxy
+    galaxy_admin_users: test@test.com
     galaxy_config:
       gravity:
         process_manager: systemd
