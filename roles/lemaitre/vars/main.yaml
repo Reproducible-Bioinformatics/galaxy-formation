@@ -1,0 +1,6 @@
+# vim:ft=yaml.ansible
+---
+
+custom_tool_directory: /srv/galaxy/server/tools/custom
+galaxy_user: galaxy
+gxpriv_user: gxpriv
