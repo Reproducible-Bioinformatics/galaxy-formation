@@ -81,3 +81,6 @@
     - role: caddy
       tags: configure_reverse_proxy
       become: true
+    - role: lemaitre
+      tags: configure_lemaitre
+      become: true
