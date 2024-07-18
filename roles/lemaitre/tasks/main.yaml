@@ -28,7 +28,7 @@
     groups: "{{ getent_passwd[gxpriv_user][2] }}"
     env:
       TOOL_DIR: "{{ custom_tool_directory }}"
-      TOOL_CONF: "{{ tool_config }}"
+      TOOL_CONF: "{{ tool_conf }}"
     volumes:
       - "{{ custom_tool_directory }}:{{ custom_tool_directory }}:rw"
       - "{{ tool_conf }}:{{ tool_conf }}:rw"
