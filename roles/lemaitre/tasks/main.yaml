@@ -19,6 +19,12 @@
     database: group
     key: "{{ galaxy_user }}"
 
+- name: Copy agent script
+  ansible.builtin.template:
+    src: "agent.sh"
+    dest: "/srv/lemaitre_agent.sh"
+    mode: '0700'
+
 - name: Create a lemaitre container
   community.docker.docker_container:
     name: lemaitre
