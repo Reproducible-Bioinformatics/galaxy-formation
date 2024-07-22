@@ -3,5 +3,6 @@
 
 custom_tool_directory: /srv/galaxy/server/tools/custom
 tool_conf: /srv/galaxy/server/config/tool_conf.xml.sample
+command_named_pipe: /tmp/lemaitre_commands
 galaxy_user: galaxy
 gxpriv_user: gxpriv

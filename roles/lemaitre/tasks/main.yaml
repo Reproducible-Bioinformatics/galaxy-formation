@@ -29,8 +29,10 @@
     env:
       TOOL_DIR: "{{ custom_tool_directory }}"
       TOOL_CONF: "{{ tool_conf }}"
+      COMMAND_PIPE: "{{ command_named_pipe }}"
     volumes:
       - "{{ custom_tool_directory }}:{{ custom_tool_directory }}:rw"
       - "{{ tool_conf }}:{{ tool_conf }}:rw"
+      - "{{ command_named_pipe }}:{{ command_named_pipe }}:rw"
     ports:
       - 9999:8000
