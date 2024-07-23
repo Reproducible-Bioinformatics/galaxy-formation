@@ -1,0 +1,16 @@
+# |-------------------------------------------------------|
+# |  MANAGED BY ANSIBLE --- CHANGES WILL BE OVERWRITTEN.  |
+# |-------------------------------------------------------|
+
+[Unit]
+Description=Lemaitre Agent used to restart a Galaxy installation.
+After=network.target
+
+[Service]
+Type=simple
+User={{ gxpriv_user }}
+ExecStart=/srv/lemaitre_agent.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

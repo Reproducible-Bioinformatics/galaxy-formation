@@ -15,10 +15,10 @@
     owner: "{{ gxpriv_user }}"
     group: "{{ galaxy_user }}"
 
-- name: Get uid for {{ gxpriv_user }}
+- name: Get uid for {{ galaxy_user }}
   ansible.builtin.getent:
     database: passwd
-    key: "{{ gxpriv_user }}"
+    key: "{{ galaxy_user }}"
 
 - name: Get gid for {{ galaxy_user }}
   ansible.builtin.getent:
@@ -30,6 +30,19 @@
     src: "agent.sh"
     dest: "/srv/lemaitre_agent.sh"
     mode: '0700'
+
+- name: Copy agent service
+  ansible.builtin.template:
+    src: "lemaitre_agent.service"
+    dest: "/etc/systemd/system/lemaitre_agent.service"
+    mode: '0700'
+
+- name: Start agent service
+  ansible.builtin.systemd:
+    state: started
+    enabled: true
+    name: lemaitre_agent
+    daemon_reload: true
 
 - name: Create a lemaitre container
   community.docker.docker_container:
