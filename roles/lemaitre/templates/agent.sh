@@ -19,7 +19,7 @@ map_vals=(
 );
 
 if [[ ! -p $PIPE_NAME ]]; then
-  mkfifo $PIPE_NAME
+  mkfifo -m 0664 $PIPE_NAME
 fi
 
 while true; do
