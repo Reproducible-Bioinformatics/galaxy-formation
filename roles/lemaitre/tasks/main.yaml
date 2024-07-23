@@ -4,8 +4,8 @@
   ansible.builtin.file:
     path: "{{ custom_tool_directory }}"
     state: directory
-    mode: '0755'
-    owner: "{{ gxpriv_user }}"
+    mode: '0777'
+    owner: "{{ galaxy_user }}"
     group: "{{ galaxy_user }}"
 
 
