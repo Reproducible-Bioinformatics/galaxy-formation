@@ -8,6 +8,12 @@
     owner: "{{ galaxy_user }}"
     group: "{{ galaxy_user }}"
 
+- name: Change permission to tool_conf
+  ansible.builtin.file:
+    path: "/srv/galaxy/server/lib/galaxy/config/sample/tool_conf.xml.sample"
+    mode: '0774'
+    owner: "{{ gxpriv_user }}"
+    group: "{{ galaxy_user }}"
 
 - name: Get uid for {{ gxpriv_user }}
   ansible.builtin.getent:
