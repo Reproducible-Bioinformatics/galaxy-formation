@@ -12,6 +12,6 @@ consistent with the configuration.
 
 ## Instructions
 
-1. `ansible-galaxy install -r requirements.yml -p roles/ --force`.
+1. `ansible-galaxy install -r requirements.yaml -p roles/ --force`.
 2. Fill out needed variables in roles/*/vars/main.yaml.
 3. `ansible-playbook main.yaml -i hosts/production.yaml`
