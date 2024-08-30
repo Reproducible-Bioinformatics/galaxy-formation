@@ -60,7 +60,6 @@
           - make
           - python3-venv
           - virtualenv
-          - python3-fissix
           - python3-lib2to3
           - python3-setuptools
           - python3-pkg-resources
