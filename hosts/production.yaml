@@ -2,6 +2,4 @@
 ---
 production:
   hosts:
-    lima-default:
-      ansible_port: 60022
-      ansible_host: localhost
+    10.10.123.10:
