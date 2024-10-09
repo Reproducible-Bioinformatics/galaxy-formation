@@ -16,6 +16,7 @@
     galaxy_manage_systemd: true
     galaxy_manage_subdomain_static: true
     galaxy_user: galaxy
+    galaxy_user_name: galaxy
     galaxy_privsep_user: gxpriv
     galaxy_group: galaxy
     galaxy_admin_users: test@test.com
