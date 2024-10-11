@@ -16,4 +16,4 @@ consistent with the configuration.
 2. Edit `hosts/production.yaml` to include the hosts you want to target.
 3. Fill out needed variables in roles/*/vars/main.yaml.
 4. `ansible-playbook main.yaml -i hosts/production.yaml -K` or, if you want to
-   run the playbook locally: `ansible-playbook --connection=local 127.0.0.1 main.yaml -K`.
+   run the playbook locally: `ansible-playbook --connection=local --inventory=127.0.0.1, main.yaml -K`.
